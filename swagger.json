@@ -1,0 +1,164 @@
+
+
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Registration API",
+      "description": "API for registering users and handling file uploads"
+    },
+    "host": "localhost:8070",
+    "basePath": "/api/v1",
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/register": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Register a new user",
+          "description": "Register a new user and handle file uploads",
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "formData",
+              "description": "Name of the user",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "email",
+              "in": "formData",
+              "description": "Email of the user",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "phoneNumber",
+              "in": "formData",
+              "description": "Phone number of the user",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "description": "Password of the user",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "address",
+              "in": "formData",
+              "description": "Address of the user",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "state",
+              "in": "formData",
+              "description": "State of the user",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "country",
+              "in": "formData",
+              "description": "Country of the user",
+              "required": true,
+              "type": "string"
+            },
+            {
+                "name": "course",
+                "in": "formData",
+                "description": "Course of the user",
+                "required": true,
+                "type": "string",
+                "enum": ["backend", "frontend", "fullstack", "data science"]
+            },
+            {
+                "name":"paid",
+                "in":"formData",
+                "required":true,
+                "type": "boolean",
+                "enum":[true, false]
+            },
+            {
+                "name": "paymentType",
+                "in": "formData",
+                "description": "Payment details",
+                "required": true,
+                "type": "string",
+                "enum": ["Naira (Access Bank): 1903725768- Tech Quest", "Dollar (Access Bank): 1907937622- Tech Quest", "Opay: 6113492774 - Tech Quest"]
+            },
+            {
+              "name": "feedBack",
+              "in": "formData",
+              "description": "Feedback",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "sendEmailCopy",
+              "in": "formData",
+              "description": "Send email copy",
+              "required": false,
+              "type": "boolean"
+            },
+            {
+              "name": "passportPhoto",
+              "in": "formData",
+              "description": "Passport photo upload",
+              "required": true,
+              "type": "file"
+            },
+            {
+              "name": "paymentReceipt",
+              "in": "formData",
+              "description": "Payment receipt upload",
+              "required": true,
+              "type": "file"
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "User registered successfully"
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        }
+      },
+      "/users": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Get all users",
+          "description": "Retrieve all registered users",
+          "responses": {
+            "200": {
+              "description": "List of regiatered users"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        }
+      }
+    }
+   
+  }
+  

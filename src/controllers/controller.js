@@ -140,6 +140,8 @@ export const register = async (req, res) => {
   const passportPhoto = passportPhotoFile.path;
   const paymentReceipt = paymentReceiptFile.path;
 
+  
+
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
@@ -164,6 +166,12 @@ export const register = async (req, res) => {
     const baseUrl = `${req.protocol}://${req.get('host')}/uploads`;
     const passportPhotoUrl = `${baseUrl}/${path.basename(passportPhoto)}`;
     const paymentReceiptUrl = `${baseUrl}/${path.basename(paymentReceipt)}`;
+
+    newUser.passportPhoto = passportPhotoUrl;
+    newUser.paymentReceipt = paymentReceiptUrl;
+    await newUser.save();
+
+
 
     // Send a copy of the user's information if checkbox is selected
     if (sendEmailCopy) {

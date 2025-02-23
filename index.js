@@ -26,10 +26,10 @@ app.use(express.json());
 // CORS handling
 
 app.use(cors({
-    oringin: '*',
+    origin: '*',
     methods: 'GET,POST',
     allowedHeaders: ['Content-Type', 'Authorization'],
-}))
+}));
 
 
 const swaggerDocument = JSON.parse(fs.readFileSync(__dirname + '/swagger.json', 'utf8'));

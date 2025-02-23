@@ -7,7 +7,7 @@
     "version": "1.0.0"
   },
   "servers":[
-    {"url": "https://techquest-three.vercel.app"},
+    {"url": "https://techquest-7yi3.onrender.com"},
     {
       "url":  "http://localhost:8070"
     }

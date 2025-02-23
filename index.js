@@ -38,8 +38,16 @@ const swaggerDocument = JSON.parse(fs.readFileSync(__dirname + '/swagger.json', 
 const port = process.env.PORT || 3000;
 
 // Swagger UI setup
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+if (swaggerDocument) {
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+} else {
+    console.error('Swagger document could not be loaded.');
+}
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.get('/', (req, res)=>{
+    res.send("welcome")
+})
 app.use('/api/v1', router)
 
 

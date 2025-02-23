@@ -150,12 +150,12 @@ export const register = async (req, res) => {
       address,
       state,
       country,
-      passportPhoto,
       course,
       paid,
       paymentReceipt,
       paymentType,
       feedBack,
+      passportPhoto,
       sendEmailCopy
     });
 
@@ -186,6 +186,9 @@ export const register = async (req, res) => {
           Address: ${address}
           State: ${state}
           Country: ${country}
+          Course: ${course}
+          Paid: ${paid}
+          FeedBack: ${feedBack}
           Passport Photo: ${passportPhotoUrl}
           Payment Receipt: ${paymentReceiptUrl}
         `,
@@ -211,4 +214,4 @@ export const getAllUsers = async (req, res) => {
     console.log(error)
     res.status(500).json({ message: 'Server error' });
   }  
-}
+};

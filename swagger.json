@@ -1,156 +1,139 @@
 
-
 {
-    "swagger": "2.0",
-    "info": {
-      "version": "1.0.0",
-      "title": "Registration API",
-      "description": "API for registering users and handling file uploads"
-    },
-    "host": "localhost:8070",
-    "basePath": "/api/v1",
-    "schemes": [
-      "http"
-    ],
-    "paths": {
-      "/register": {
-        "post": {
-          "tags": [
-            "User"
-          ],
-          "summary": "Register a new user",
-          "description": "Register a new user and handle file uploads",
-          "consumes": [
-            "multipart/form-data"
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "parameters": [
-            {
-              "name": "name",
-              "in": "formData",
-              "description": "Name of the user",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "email",
-              "in": "formData",
-              "description": "Email of the user",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "phoneNumber",
-              "in": "formData",
-              "description": "Phone number of the user",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "password",
-              "in": "formData",
-              "description": "Password of the user",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "address",
-              "in": "formData",
-              "description": "Address of the user",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "state",
-              "in": "formData",
-              "description": "State of the user",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "country",
-              "in": "formData",
-              "description": "Country of the user",
-              "required": true,
-              "type": "string"
-            },
-            {
-                "name": "course",
-                "in": "formData",
-                "description": "Course of the user",
-                "required": true,
-                "type": "string",
-                "enum": ["backend", "frontend", "fullstack", "data science"]
-            },
-            {
-                "name":"paid",
-                "in":"formData",
-                "required":true,
-                "type": "boolean",
-                "enum":[true, false]
-            },
-            {
-                "name": "paymentType",
-                "in": "formData",
-                "description": "Payment details",
-                "required": true,
-                "type": "string",
-                "enum": ["Naira (Access Bank): 1903725768- Tech Quest", "Dollar (Access Bank): 1907937622- Tech Quest", "Opay: 6113492774 - Tech Quest"]
-            },
-            {
-              "name": "feedBack",
-              "in": "formData",
-              "description": "Feedback",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "sendEmailCopy",
-              "in": "formData",
-              "description": "Send email copy",
-              "required": false,
-              "type": "boolean"
-            },
-            {
-              "name": "passportPhoto",
-              "in": "formData",
-              "description": "Passport photo upload",
-              "required": true,
-              "type": "file"
-            },
-            {
-              "name": "paymentReceipt",
-              "in": "formData",
-              "description": "Payment receipt upload",
-              "required": true,
-              "type": "file"
-            }
-          ],
-          "responses": {
-            "201": {
-              "description": "User registered successfully"
-            },
-            "400": {
-              "description": "Bad request"
-            },
-            "500": {
-              "description": "Server error"
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Techquest",
+    "description":"Techquest registration api",
+    "version": "1.0.0"
+  },
+  "servers":[
+    {
+      "url":  "http://localhost:8070/api/v1"
+    }
+  
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Make payment from any of these account",
+        "tags":["registerRoute"],
+        "requestBody": {
+          "content": {
+           "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name":{
+                    "type":"string",
+                    "required":true,
+                    "example":"ben"
+                  },
+                  "email":{
+                    "type":"string",
+                    "required":true,
+                    "example":"ben@gmail.com"
+                  },
+                  "phoneNumber":{
+                    "type":"string",
+                    "required":true,
+                    "example":"0708047194"
+                  },
+                  "password":{
+                    "type":"string",
+                    "required":true,
+                    "example":"12345678"
+                  },
+                  "address":{
+                    "type":"string",
+                    "required":true,
+                    "example":"No 12 somolu street lagos"
+                  },
+                  "state":{
+                    "type":"string",
+                    "required":true,
+                    "example":"lagos"
+                  },
+                  "country":{
+                    "type":"string",
+                    "required":true,
+                    "example":"nigeria"
+                  },
+                  "course":{
+                    "type":"string",
+                    "required":true,
+                    "default":"null",
+                    "enum":["Backend", "Frontend", "Designer"]
+                  },
+                  "paid":{
+                    "type":"boolean",
+                    "required":true,
+                    "default":"null",
+                    "enum":[true, false]
+                  },
+                  "paymentType": {
+                    "type": "string",
+                    "required": true,
+                    "default":"null",
+                    "enum": [
+                      "Naira (Access Bank): 1903725768- Tech Quest",
+                      "Dollar (Access Bank): 1907937622- Tech Quest",
+                      "Opay: 6113492774 - Tech Quest"
+                    ]
+                   
+                  },
+                  "feedBack":{
+                    "type":"string",
+                    "required":true,
+                    "example":"From a friend"
+                  },
+                  "passportPhoto":{
+                    "type":"file",
+                    "format":"binary",
+                    "required":true
+                  },
+                  "paymentReceipt":{
+                    "type":"file",
+                    "format":"binary",
+                    "required":true
+                  },
+                  "sendEmailCopy":{
+                    "type":"boolean",
+                    "required":false,
+                    "enum":[true, false]
+                  }
+                }
+              }
             }
           }
+        },
+        "responses": {
+          "201": {
+            "description": "registration completed"
+          },
+          "400":{
+            "description":"Bad request"
+
+          },
+          "500":{
+            "description":"Server error"
+          }
         }
-      },
-      "/users": {
+      }
+    },
+
+   "/users": {
         "get": {
           "tags": [
-            "User"
+            "Users"
           ],
-          "summary": "Get all users",
+          "summary": "Get all registered users",
           "description": "Retrieve all registered users",
           "responses": {
             "200": {
               "description": "List of regiatered users"
+            },
+            "404":{
+              "description": "Not found"
             },
             "500": {
               "description": "Server error"
@@ -158,7 +141,5 @@
           }
         }
       }
-    }
-   
   }
-  
+}

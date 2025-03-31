@@ -7,7 +7,11 @@
     "version": "1.0.0"
   },
   "servers":[
-    {"url": "https://techquest-7yi3.onrender.com"},
+
+    {
+      "url": "https://techquest-7yi3.onrender.com"
+      },
+    
     {
       "url":  "http://localhost:8070"
     }
@@ -38,11 +42,6 @@
                     "type":"string",
                     "required":true,
                     "example":"0708047194"
-                  },
-                  "password":{
-                    "type":"string",
-                    "required":true,
-                    "example":"12345678"
                   },
                   "address":{
                     "type":"string",

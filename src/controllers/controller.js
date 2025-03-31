@@ -119,7 +119,7 @@ export const register = async (req, res) => {
     name,
     email,
     phoneNumber,
-    password,
+    // password,
     address,
     state,
     country,
@@ -143,12 +143,12 @@ export const register = async (req, res) => {
   
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       name,
       email,
       phoneNumber,
-      password: hashedPassword,
+      // password: hashedPassword,
       address,
       state,
       country,
@@ -208,7 +208,7 @@ export const register = async (req, res) => {
     res.status(201).json(newUser);
   } catch (error) {
     console.log("error", error)
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error', error });
   }
 };
 
@@ -219,7 +219,7 @@ export const getAllUsers = async (req, res) => {
     const users = await User.find().select('-password -__v -updatedAt');
     res.status(200).json(users);
   } catch (error) {
-    console.log(error)
-    res.status(500).json({ message: 'Server error' });
+    console.log("errr", error)
+    res.status(500).json({ message: 'Server error', error});
   }  
 };
